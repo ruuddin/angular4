@@ -1,0 +1,68 @@
+<div>
+    <h3>Property binding (coming from server.component.ts)</h3>
+    <ul>
+        <li>boolean property binding example:  <button class="btn btn-primary" [disabled]="!allowNewServer">Add Server</button></li>
+        <li>string interpolation <p>{{allowNewServer}}</p></li>
+        <li>property binding <p [innerText]=allowNewServer></p></li>
+        <li>click event binding:  
+            <button 
+                class="btn btn-primary" 
+                [disabled]="!allowNewServer" 
+                (click)="onCreateServer()">Add Server</button></li>
+        <li><p>{{serverCreationStatus}}</p></li>
+        <!-- $event is the data emitted with the event.  -->
+        <li>Event binding:
+            <input 
+                type="text" 
+                class="form-control"
+                (input)="onServerNameUpdate($event)" /></li>
+        <li>Two-way data binding: 
+            <p>{{serverName}}</p>
+            <input 
+                type="text" 
+                class="form-control"
+                [(ngModel)]="serverName" /></li>
+        <li>Assignment: 
+            <input 
+                type="text" 
+                class="form-control"
+                [(ngModel)]="userName" />
+            <button 
+                class="btn btn-primary" 
+                [disabled]="userName === ''"
+                (click)="resetUserName()">Reset userName</button></li>
+        <li><p>UserName: {{userName}}</p></li>
+
+        <li>ngIf directive:  
+            <button 
+                class="btn btn-primary"  
+                (click)="onCreateServer()">Add Server</button>
+                <p *ngIf="serverCreated">{{serverCreationStatus}}</p></li>
+        <li>ngIf directive (with else block):  
+            <button 
+                class="btn btn-primary"  
+                (click)="onCreateServer()">Add Server</button>
+                <ng-template #noServer>
+                <p>{{serverCreationStatus}}</p>
+                </ng-template>
+                <p *ngIf="serverCreated; else noServer">{{serverCreationStatus}}</p></li>
+        <li>ngStyle: <p [ngStyle]="{backgroundColor:getColor()}">Server status {{serverStatus}} {{getServerStatus()}}</p></li>
+        <li>ngClass: <p 
+            [ngClass]="{online: serverStatus === 'online'}"
+            [ngStyle]="{backgroundColor:getColor()}">Server status {{serverStatus}}</p></li>
+        <li>ngFor: 
+            <button 
+                class="btn btn-primary"  
+                (click)="addWarning()">Add Warning</button></li>
+        <li>Assignment: 
+            <button 
+                class="btn btn-primary"  
+                (click)="toggleMessage()">Toggle Message</button>
+            <p *ngIf="showMessage">Message here</p>
+            <div *ngFor="let count of clickCounts; let i = index"
+                [ngStyle]="{backgroundColor: i > 4? 'blue':'transparent'}"
+                [ngClass]="{clickCount: i > 4}">Click # {{count}}</div></li>
+    </ul>
+<p>Server id {{serverId}}</p>
+<p>Server status {{serverStatus}} {{getServerStatus()}}</p>
+<app-warningalert *ngFor="let warning of warnings"></app-warningalert>
