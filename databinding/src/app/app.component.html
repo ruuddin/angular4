@@ -7,7 +7,13 @@
     <div class="col-xs-12">
       <app-server-element 
         *ngFor="let server of serverElements"
-        [aliasElem]="server"></app-server-element>
+        [aliasElem]="server">
+        <!--Replaced by ng-content in server-element.component.html  -->
+        <p>
+          <strong *ngIf="server.type === 'server'" style="color: red">{{ server.content }}</strong>
+          <em *ngIf="server.type === 'blueprint'">{{ server.content }}</em>
+        </p>
+      </app-server-element>
     </div>
   </div>
 </div>
