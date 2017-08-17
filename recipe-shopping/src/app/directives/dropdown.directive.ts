@@ -11,7 +11,6 @@ export class DropdownDirective {
 
   //listen for click event on the element
   @HostListener('click') toggleOpen() {
-    console.log("clicked");
     this.isOpen = !this.isOpen;
   }
   constructor(private element: ElementRef, private renderer: Renderer2) { }

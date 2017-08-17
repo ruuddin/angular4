@@ -20,4 +20,13 @@ export class ShoppingService {
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
 
+  addIngredientsToShoppingList(ings: Ingredient[]) {
+    // ings.forEach((i:Ingredient) => this.addIngredient(i))
+
+    //we dont want to emit several events, rather push elements in one go
+    //spread operator ... turns an array into a list
+    this.ingredients.push(...ings);
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+
 }
